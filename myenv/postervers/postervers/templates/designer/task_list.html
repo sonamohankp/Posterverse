@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task List</title>
+</head>
+<body>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        li {
+            background-color: #fff;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        li a {
+            text-decoration: none;
+            color: #007bff;
+        }
+        li:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
+
+    <body>
+        <div class="container">
+            <h2>Task List</h2>
+            <ul>
+                {% for task in tasks %}
+                <li><a href="{% url 'task_detail' task.id %}">{{ task.title }}</a></li>
+                {% empty %}
+                <li>No tasks found.</li>
+                {% endfor %}
+            </ul>
+            </div>
+</body>
+</html>

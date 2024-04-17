@@ -1,0 +1,38 @@
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <article class="container text-center">
+        <h2 >{{ task.title }}</h2>
+            <p>{{ task.description }}</p>
+            
+            <h3 class="mt-5">Submit Design</h3>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form|crispy}}
+                <button type="submit" class="btn btn-success">Submit Design</button>
+            </form>
+            
+            <h3>Design Submissions</h3>
+            <ul style="list-style-type: none; padding: 0;">
+                {% for submission in task.designsubmission_set.all %}
+                <li style="display: inline-block; margin-right: 10px;">
+                    <img src="{{ submission.design_draft.url }}" width="100">
+                    {% if submission.feedback %}
+                    <p>Feedback: {{ submission.feedback }}</p>
+                    {% endif %}
+                </li>
+                {% empty %}
+                <li>No submissions yet.</li>
+                {% endfor %}
+            </ul>
+            
+            <a href="{% url 'task_list' %}">task list</a>
+            <article class="container text-center">
+</body>
+</html>

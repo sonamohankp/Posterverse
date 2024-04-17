@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2 style='margin-top: 150px; text-align: center;'>Browse Posters</h2>
+<ul>
+    <!-- Navigation links -->
+    <li style="display: inline-block; padding-left: 150px;"><a href="{% url 'submit_design_request' %}">Submit Design Request</a></li>
+    <li style="display: inline-block;padding-left: 250px;"><a href="{% url 'design_requests' %}">Design Requests</a></li>
+</ul>
+<hr>
+<ul >
+{% for poster in posters %}
+    <li style="display: inline-block; margin-right: 10px; vertical-align: top;">
+        <h3 style="margin-top: 10px;">{{ poster.title }}</h3>
+        <p>{{ poster.description }}</p>
+        <img src="{{ poster.image.url }}" alt="{{ poster.title }}" width="150">
+    </li>
+{% endfor %}
+</ul>
+</body>
+</html>

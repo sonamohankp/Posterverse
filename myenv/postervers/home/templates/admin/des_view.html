@@ -1,0 +1,62 @@
+{% extends 'admin_dash.html' %}
+
+{% block content %}
+
+{% load crispy_forms_filters %}
+<div class="col-lg-20">
+    {% for message in messages %}
+    <div class="alert alert-primary" role="alert">
+        {{message}}
+    </div>
+    {% endfor %}
+    <div class="card">
+        <div class="card-header">
+            <strong class="card-title">DESIGNER LIST</strong>
+        </div>
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">SI No</th>
+                    <th scop="'col">name</th>
+                     <th scope="col">Email</th>
+                    <th scope="col">Phone number</th>
+
+
+                 
+
+                    <th scope="col">Approval</th>
+
+
+                </tr>
+                 <tbody>
+                {% for n in data %}
+                <tr>
+                    <th scope="row">{{forloop.counter}}</th>
+                    <td>{{n.user}}</td>
+                    
+                    <td>{{n.email}}</td>
+                    <td>{{n.contact_no}}</td>
+                   
+
+                    <td>
+                        {% if n.status == False %}
+
+                            <a type="button" class="btn btn-success" href="{% url 'desinger_approval' n.id %}">Approve
+
+
+                            {% elif n.status == True %}
+
+                        <button type="button" class="btn btn-danger">verified account</button>
+
+                           {% endif %}
+                           </td>
+
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

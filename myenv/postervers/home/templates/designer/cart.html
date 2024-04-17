@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cart</title>
+</head>
+<body>
+    <h1>Cart</h1>
+    <ul>
+        {% for poster in cart.posters.all %}
+            <li>
+                <h2>{{ poster.title }}</h2>
+                <p>{{ poster.description }}</p>
+                <p>Price: ${{ poster.price }}</p>
+                <img src="{{ poster.image.url }}" alt="{{ poster.title }}">
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
